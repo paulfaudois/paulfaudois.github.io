@@ -1,0 +1,215 @@
+/* ===========================================================================
+   PAUL FAUDOIS | PORTFOLIO E5 — V5 « LES SABLES D'OLONNE »
+   Modifie ce fichier librement : il complète le CSS original styles.css.
+   Thèmes : jour (par défaut) + nuit, contrôlés par ocean-v5.js.
+   =========================================================================== */
+
+:root{
+  --v5-background:#fcfaf5;--v5-surface:#ffffff;--v5-text:#163946;
+  --v5-subtext:#59717a;--v5-border:#dbe8e8;--v5-ocean:#0b7893;
+  --v5-accent:#f18b69;--v5-seafoam:#bcf0e8;
+  --v5-sky-top:#71bfd0;--v5-sky-bottom:#e0efdd;
+  --v5-sun:#ffd38d;--v5-sea:#08728a;
+}
+html{color-scheme:light}
+body{background:var(--v5-background);color:var(--v5-text);transition:background-color .35s,color .35s}
+button,a{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible{outline:3px solid #f8b874;outline-offset:4px}
+#contenu{overflow:hidden}
+.container{max-width:1200px}
+
+/* Navigation and theme switch */
+.site-header{background:rgba(255,255,255,.96)}
+.nav-container{gap:12px}
+.theme-toggle{min-width:92px;height:42px;flex:none;border:1px solid #c9e3e5;border-radius:60px;background:#f1f8f7;color:#164758;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 13px;font:800 .77rem 'DM Sans',sans-serif;cursor:pointer;box-shadow:0 3px 10px rgba(5,56,74,.05);transition:transform .2s,background .25s,border-color .25s,color .25s}
+.theme-toggle:hover{transform:translateY(-2px);background:#e7f6f7}
+.theme-toggle-symbol{font-size:1.24rem;line-height:1;transform:translateY(-1px)}
+.theme-toggle-label{white-space:nowrap}
+.reading-progress{height:3px;position:fixed;top:0;left:0;width:0;background:linear-gradient(90deg,#f5c781,#ee8366,#4dd3d6);z-index:101;pointer-events:none}
+
+/* Hero: a truly maritime cover */
+.ocean-hero{background:linear-gradient(119deg,#052d44 4%,#07506a 57%,#08778d 100%);min-height:770px}
+.ocean-hero:before{background:radial-gradient(ellipse at 78% 20%,rgba(255,255,255,.15) 0,transparent 45%);box-shadow:none;border:0;inset:0;top:0;right:0;width:100%;height:100%;border-radius:0}
+.ocean-grain{position:absolute;inset:0;opacity:.17;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.4) .7px,transparent .8px);background-size:27px 27px;mask-image:linear-gradient(90deg,transparent 0%,#000 65%);z-index:0}
+.ocean-hero .hero-layout{grid-template-columns:minmax(0,1.09fr) minmax(0,.91fr);min-height:740px;gap:43px;padding-top:80px;padding-bottom:145px;position:relative;z-index:2}
+.ocean-hero .hero-copy h1{font-size:clamp(4rem,6.7vw,7rem);line-height:1.02}
+.ocean-hero .hero-copy h1 span{color:#f5c88e}
+.ocean-hero .pill-light{margin-bottom:25px}
+.ocean-hero .hero-claim{max-width:670px;font-size:clamp(1.7rem,2.6vw,2.65rem)}
+.ocean-hero .hero-metrics{margin-top:43px}
+.ocean-hero .hero-metrics>div{border-left-color:#64d4d1}
+.ocean-hero .hero-intro{max-width:590px}
+.hero-tide{position:absolute;z-index:3;bottom:-1px;left:0;width:100%;height:125px;pointer-events:none}
+.hero-tide svg{width:100%;height:100%;display:block}
+.hero-tide path{fill:var(--v5-background)}
+.ocean-hero .scroll-indicator{position:absolute;z-index:4;bottom:30px;right:6%;color:#406b75;font-size:.68rem;font-weight:900;letter-spacing:.19em;display:flex;align-items:center;gap:9px;transition:transform .2s}
+.scroll-indicator span{font-size:1.6rem;animation:bob-quiet 2.8s ease-in-out infinite}
+.scroll-indicator:hover{transform:translateY(4px)}
+
+/* Illustrated postcard — entirely original CSS shapes */
+.marine-scene{position:relative;height:530px;min-height:530px;border-radius:27px;overflow:hidden;isolation:isolate;background:linear-gradient(180deg,var(--v5-sky-top) 0%,var(--v5-sky-bottom) 52%,#e4bd92 52.3%,#dbc29a 59%,var(--v5-sea) 59.2%,#044b69 100%);box-shadow:0 35px 75px rgba(0,20,31,.32),inset 0 0 0 1px rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.36)}
+.marine-scene:before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;background:radial-gradient(ellipse at 71% 40%,rgba(255,244,213,.55),transparent 37%);z-index:1}
+.marine-scene:after{content:'';position:absolute;inset:0;pointer-events:none;border:13px solid rgba(255,255,255,.035);border-radius:27px;z-index:16}
+.scene-sky{position:absolute;inset:0 0 39%;z-index:1}
+.scene-sun{position:absolute;top:17%;right:16%;width:143px;height:143px;border-radius:50%;background:var(--v5-sun);box-shadow:0 0 0 18px rgba(255,231,183,.23),0 0 75px rgba(255,230,172,.6);animation:float-sun 8s ease-in-out infinite}
+.scene-moon{position:absolute;top:18%;right:18%;width:108px;height:108px;border-radius:50%;background:#fbf2d7;box-shadow:0 0 28px rgba(238,249,249,.55),0 0 75px rgba(231,248,250,.23);opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s}
+.scene-moon:after{content:'';position:absolute;border-radius:50%;background:rgba(120,163,176,.15);height:17px;width:17px;top:25%;left:30%;box-shadow:31px 28px 0 -5px rgba(120,163,176,.13),-5px 45px 0 -2px rgba(120,163,176,.15)}
+.scene-star{position:absolute;width:3px;height:3px;border-radius:50%;background:white;opacity:0;box-shadow:0 0 9px 2px rgba(255,255,255,.6);animation:twinkle 4s ease-in-out infinite}
+.star-one{left:17%;top:18%}.star-two{left:29%;top:31%;animation-delay:.5s}.star-three{left:54%;top:13%;animation-delay:1.3s}.star-four{left:82%;top:11%;animation-delay:1.9s}.star-five{left:63%;top:38%;animation-delay:.8s}
+.gull{position:absolute;font-family:Georgia,serif;color:#285f6c;font-size:45px;font-weight:700;line-height:1;z-index:4;display:block;animation:gull-fly 9s ease-in-out infinite}
+.gull-one{top:20%;left:19%;transform:rotate(12deg)}.gull-two{top:30%;left:28%;font-size:30px;animation-duration:12s;animation-delay:-5s}
+.scene-horizon{position:absolute;top:55%;width:100%;height:3px;background:rgba(250,248,233,.38);z-index:1}
+.scene-cliff{position:absolute;left:-7%;top:45%;width:105%;height:25%;background:#c8a67e;clip-path:polygon(0 44%,8% 41%,19% 27%,25% 40%,35% 22%,42% 25%,52% 49%,65% 43%,75% 56%,84% 45%,100% 70%,100% 100%,0 100%);z-index:3;filter:drop-shadow(0 4px 5px rgba(5,53,73,.12))}
+.scene-beacon{position:absolute;left:22%;top:33%;height:170px;width:72px;z-index:7}
+.beacon-tower{position:absolute;z-index:5;bottom:0;left:14px;width:45px;height:127px;background:linear-gradient(90deg,#f8f0d8,#fff8ec 42%,#dfd4ba);clip-path:polygon(12% 0,88% 0,100% 100%,0 100%);box-shadow:0 3px 9px rgba(0,30,40,.2)}
+.beacon-roof{position:absolute;z-index:7;left:7px;top:19px;width:62px;height:18px;background:#cb6c4c;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.beacon-lantern{position:absolute;z-index:6;left:22px;top:31px;width:33px;height:30px;background:#133e50;border:4px solid #efe3c7;border-bottom:0;box-shadow:inset 0 0 12px #ffe7a5}
+.beacon-window{position:absolute;z-index:8;top:88px;left:35px;width:12px;height:23px;border-radius:7px 7px 1px 1px;background:#124454}
+.beacon-glow{position:absolute;top:33px;left:33px;width:13px;height:13px;background:#fff1bc;border-radius:50%;z-index:10;box-shadow:0 0 12px 7px rgba(255,244,196,.8),0 0 27px 12px rgba(255,244,196,.4);animation:beacon-pulse 2.6s ease-in-out infinite}
+.beacon-beam{position:absolute;z-index:5;left:35px;top:-55px;width:350px;height:215px;clip-path:polygon(0 46%,100% 0,100% 100%);transform-origin:0 50%;background:linear-gradient(90deg,rgba(255,247,208,.85),rgba(255,238,174,.23) 60%,transparent 100%);opacity:.32;filter:blur(2px);animation:beacon-sweep 8.2s ease-in-out infinite}
+.scene-water{position:absolute;left:-30%;width:160%;z-index:8;pointer-events:none;will-change:transform}
+.scene-water-back{height:120px;bottom:7%;border-radius:50% 50% 0 0;background:#2ba5af;opacity:.47;transform:rotate(-5deg);animation:sea-back 6s ease-in-out infinite alternate}
+.scene-water-mid{height:110px;bottom:-7%;border-radius:50% 50% 0 0;background:#026078;opacity:.85;transform:rotate(4deg);animation:sea-mid 7s ease-in-out infinite alternate}
+.scene-water-front{z-index:12;height:85px;bottom:-15%;border-radius:50% 50% 0 0;background:#033c5a;opacity:.75;transform:rotate(-6deg);animation:sea-front 5s ease-in-out infinite alternate}
+.scene-boat{position:absolute;z-index:11;right:19%;bottom:24%;width:78px;height:83px;animation:boat-sway 4.2s ease-in-out infinite;transform-origin:50% 90%}
+.boat-mast{position:absolute;left:35px;top:2px;height:64px;width:3px;background:#263b41}
+.boat-sail{position:absolute;left:38px;top:7px;height:53px;width:36px;background:#f9ead2;clip-path:polygon(0 0,100% 100%,0 100%);filter:drop-shadow(0 2px 2px rgba(0,0,0,.12))}
+.boat-hull{position:absolute;bottom:10px;left:0;height:14px;width:78px;clip-path:polygon(0 0,100% 0,83% 100%,18% 100%);background:#173846}
+.scene-coordinates{position:absolute;z-index:15;top:21px;left:22px;color:rgba(5,56,71,.72);font:800 .65rem 'DM Sans',sans-serif;letter-spacing:.17em}
+.marine-scene .sea-label{bottom:23px;left:23px;z-index:15;letter-spacing:.13em;font-size:.65rem;text-shadow:0 2px 6px rgba(0,30,40,.5)}
+
+/* Refined homepage sections */
+.ocean-feature-grid .feature-card{border-radius:18px;min-height:344px}
+.ocean-feature-grid .feature-card:nth-child(1){border-top:5px solid #6fc1bd}
+.ocean-feature-grid .feature-card:nth-child(2){border-top:5px solid #f4c58e}
+.ocean-feature-grid .feature-card:nth-child(3){border-top:5px solid #e97d67}
+.ocean-feature-grid .feature-icon{font-size:3rem;display:flex;align-items:center;justify-content:flex-start}
+.route-symbol{font-family:Outfit,sans-serif;position:relative;z-index:2}
+.home-radar{background:linear-gradient(180deg,#fff,#f7faf6)}
+.radar-visual{position:relative;width:100%;max-width:540px;aspect-ratio:1.1;border-radius:22px;background:radial-gradient(circle at 50% 52%,#0a586b 0,#073446 63%,#052737 100%);box-shadow:0 30px 70px rgba(5,46,63,.20);overflow:hidden;border:1px solid rgba(3,88,105,.25);display:flex;flex-direction:column;justify-content:space-between;padding:24px;color:#b2dfe3}
+.radar-topline,.radar-bottomline{position:relative;z-index:4;display:flex;justify-content:space-between;gap:10px;font-size:.65rem;letter-spacing:.14em;font-weight:800}
+.radar-bottomline{justify-content:center}.radar-bottomline b{color:#f6c58b;margin:0 4px}
+.radar-rings{position:absolute;inset:15% 14%;border:1px solid rgba(111,225,215,.16);border-radius:50%;background:repeating-radial-gradient(circle at 50% 50%,transparent 0 50px,rgba(144,224,213,.19) 51px,transparent 52px),linear-gradient(rgba(143,219,216,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(143,219,216,.08) 1px,transparent 1px);background-size:auto,34px 34px,34px 34px}
+.radar-line{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg 280deg,rgba(98,216,196,.3) 330deg,rgba(137,247,220,.05) 360deg);animation:radar-turn 10s linear infinite}
+.radar-center{position:absolute;top:50%;left:50%;width:14px;height:14px;border-radius:50%;background:#effbd8;transform:translate(-50%,-50%);box-shadow:0 0 0 7px rgba(111,227,207,.15),0 0 28px rgba(132,248,220,.66)}
+.radar-ping{position:absolute;height:8px;width:8px;border-radius:50%;background:#ffca97;box-shadow:0 0 16px 4px rgba(255,202,151,.42);animation:twinkle 4s infinite}.ping-one{top:25%;left:34%}.ping-two{bottom:28%;right:23%;animation-delay:-1.4s}
+.ocean-manifesto{background:linear-gradient(135deg,#e9f5f2,#f7f1e4);padding:96px 0 110px;overflow:hidden}
+.manifesto-grid{display:grid;grid-template-columns:1fr .85fr;gap:80px;align-items:center}
+.manifesto-grid h2{font-size:clamp(2.7rem,4.8vw,4.9rem);color:#073a4c;max-width:590px}
+.manifesto-grid p:not(.eyebrow){font-size:1rem;color:#526c71}
+.tide-stripes{position:absolute;bottom:0;left:-10%;width:120%;height:40px;display:flex;gap:8px;overflow:hidden}.tide-stripes i{width:40%;height:100%;border-radius:50% 50% 0 0;background:rgba(36,154,167,.18);transform:translateY(15px)}.tide-stripes i:nth-child(2){background:rgba(239,159,117,.16);transform:translateY(5px)}
+
+/* Gallery of actual source material */
+.gallery-section{background:linear-gradient(180deg,#f2f8f6,#fcfaf5)}
+.gallery-header{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:32px}
+.gallery-header h2{font-size:clamp(2.1rem,4vw,3.65rem);color:#073a4c;margin-bottom:15px}
+.gallery-header p:not(.eyebrow){color:#577078;max-width:720px}
+.gallery-count{flex:none;white-space:nowrap;font-size:.69rem;font-weight:900;letter-spacing:.13em;border:1px solid #c7dddf;border-radius:100px;padding:10px 15px;color:#45717b}
+.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.evidence-card{display:block;background:#fff;border:1px solid #dfebeb;border-radius:15px;overflow:hidden;box-shadow:0 10px 28px rgba(6,54,71,.055);transition:transform .24s,box-shadow .24s,border-color .24s}
+.evidence-card:hover{transform:translateY(-5px);box-shadow:0 17px 38px rgba(5,50,65,.13);border-color:#7dbcc4}
+.evidence-thumb{display:block;height:188px;position:relative;background:#e5f1f0;overflow:hidden}
+.evidence-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .4s ease}
+.evidence-card:hover .evidence-thumb img{transform:scale(1.055)}
+.evidence-zoom{position:absolute;right:13px;bottom:13px;width:38px;height:38px;display:grid;place-items:center;background:#073a4c;color:white;border-radius:50%;font-size:1.1rem;box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.evidence-information{display:grid;gap:8px;padding:17px 19px 20px}
+.evidence-information strong{font:750 1.08rem Outfit,sans-serif;color:#073a4c}
+.evidence-information small{color:#627b7f;font-size:.78rem;line-height:1.55}
+.gallery-disclaimer{margin-top:24px;border-left:4px solid #eaa07b;background:#fff9f0;border-radius:0 9px 9px 0;padding:17px 19px;color:#617279;font-size:.84rem}
+.gallery-disclaimer span{font-size:1.2rem;margin-right:6px;color:#d77d56}
+.gallery-dialog{width:min(1120px,94vw);max-height:92vh;max-width:none;padding:0;overflow:hidden;border:0;border-radius:18px;background:#f8faf9;box-shadow:0 40px 120px rgba(0,18,33,.46);color:#153948}
+.gallery-dialog::backdrop{background:rgba(0,24,39,.83);backdrop-filter:blur(5px)}
+.dialog-bar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:19px 23px;background:#fff;border-bottom:1px solid #dee9e8}
+.dialog-title{font:800 1.1rem Outfit,sans-serif}.dialog-description{margin:5px 0 0;font-size:.76rem;color:#667c82}
+.dialog-close{width:40px;height:40px;flex:none;border:0;border-radius:50%;background:#e7f3f2;color:#073a4c;font-size:1.1rem;cursor:pointer}
+.dialog-media{max-height:calc(92vh - 91px);overflow:auto;display:flex;justify-content:center;padding:14px;background:#e6eceb}
+.dialog-media img{max-height:calc(92vh - 121px);width:auto;max-width:100%;object-fit:contain}
+
+/* Existing project pages feel connected to the ocean theme */
+.page-banner{background:linear-gradient(112deg,#e7f6f4,#f8f3e7 78%)}
+.page-banner:after{content:'';position:absolute;right:2%;bottom:-10px;width:min(30vw,360px);height:70px;background:linear-gradient(150deg,transparent 54%,rgba(24,153,166,.08) 55%);border-radius:50%}
+.project-tile,.stage-intro-card,.aside-card,.step-card,.competence-row,.empty-card,.cv-sheet{transition:box-shadow .25s,transform .25s,background-color .3s}
+.project-tile:hover{transform:translateY(-4px)}
+.footer{position:relative}.footer:before{content:'';display:block;position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#33b5b8,#f5cb9a,#ec8064,#33b5b8)}
+
+/* ======================== MODE NUIT ======================== */
+html[data-theme="night"]{color-scheme:dark;--v5-background:#081e2b;--v5-surface:#102e3d;--v5-text:#eff8f7;--v5-subtext:#a4c1c7;--v5-border:#274e5e;--v5-ocean:#6ed0d4;--v5-accent:#ffad85;--v5-sky-top:#071a37;--v5-sky-bottom:#1a4967;--v5-sea:#06384f}
+html[data-theme="night"] body{background:#081e2b;color:#e4f3f5}
+html[data-theme="night"] .site-header{background:rgba(7,27,39,.97);box-shadow:0 1px 0 #214456,0 10px 25px rgba(0,0,0,.2)}
+html[data-theme="night"] .brand-label,html[data-theme="night"] .site-header nav a{color:#d1e9e9}
+html[data-theme="night"] .brand-label small{color:#90afb9}
+html[data-theme="night"] .site-header nav a:hover,html[data-theme="night"] .site-header nav a.active{background:#163f51;color:#b8f0ed}
+html[data-theme="night"] .theme-toggle{background:#16394b;border-color:#31586b;color:#f7dfa2}
+html[data-theme="night"] .theme-toggle:hover{background:#1c4b60}
+html[data-theme="night"] .ocean-hero{background:linear-gradient(120deg,#02121f,#05263e 63%,#12425a)}
+html[data-theme="night"] .marine-scene{background:linear-gradient(180deg,#07152f 0%,#124467 52%,#22394b 52.3%,#294b5f 59%,#06384f 59.2%,#031f38 100%)}
+html[data-theme="night"] .marine-scene:before{background:radial-gradient(ellipse at 70% 27%,rgba(137,197,211,.1),transparent 44%)}
+html[data-theme="night"] .scene-sun{opacity:0;transform:translateY(30px)}
+html[data-theme="night"] .scene-moon{opacity:1;transform:translateY(0)}
+html[data-theme="night"] .scene-star{opacity:.95}
+html[data-theme="night"] .gull{color:rgba(191,215,220,.44)}
+html[data-theme="night"] .scene-cliff{background:#1e4150}
+html[data-theme="night"] .scene-water-back{background:#0f7188}
+html[data-theme="night"] .scene-water-mid{background:#084662}
+html[data-theme="night"] .scene-water-front{background:#032942}
+html[data-theme="night"] .beacon-beam{opacity:.78;filter:blur(1.5px)}
+html[data-theme="night"] .beacon-glow{box-shadow:0 0 13px 9px rgba(255,247,206,.95),0 0 36px 19px rgba(255,242,177,.43)}
+html[data-theme="night"] .scene-coordinates{color:rgba(214,235,230,.8)}
+html[data-theme="night"] .section-light,html[data-theme="night"] .home-radar,html[data-theme="night"] .gallery-section{background:#0c2635}
+html[data-theme="night"] .section:not(.section-light):not(.mini-cta):not(.ocean-manifesto):not(.gallery-section){background:#081e2b}
+html[data-theme="night"] .section-heading h2,html[data-theme="night"] .spotlight h2,html[data-theme="night"] .gallery-header h2{color:#e8f8f7}
+html[data-theme="night"] .section-heading>p:not(.eyebrow),html[data-theme="night"] .spotlight p,html[data-theme="night"] .gallery-header p:not(.eyebrow){color:#aec5c9}
+html[data-theme="night"] .feature-card:not(.feature-dark),html[data-theme="night"] .project-tile,html[data-theme="night"] .evidence-card,html[data-theme="night"] .stage-intro-card,html[data-theme="night"] .cv-sheet,html[data-theme="night"] .competence-row,html[data-theme="night"] .empty-card,html[data-theme="night"] .step-card,html[data-theme="night"] .aside-proof{background:#123545;border-color:#2b5866;color:#e1f0f0}
+html[data-theme="night"] .feature-card:not(.feature-dark) h3,html[data-theme="night"] .project-tile h3,html[data-theme="night"] .evidence-information strong,html[data-theme="night"] .empty-card h3,html[data-theme="night"] .step-card h3,html[data-theme="night"] .competence-row h3{color:#edfbf9}
+html[data-theme="night"] .feature-card p,html[data-theme="night"] .project-tile p,html[data-theme="night"] .evidence-information small,html[data-theme="night"] .step-card p,html[data-theme="night"] .empty-card p{color:#adc7cd}
+html[data-theme="night"] .ocean-manifesto{background:linear-gradient(130deg,#123545,#0b2637)}
+html[data-theme="night"] .manifesto-grid h2{color:#e6f9f8}
+html[data-theme="night"] .manifesto-grid p:not(.eyebrow){color:#b4cdd1}
+html[data-theme="night"] .radar-visual{border-color:#264f61}
+html[data-theme="night"] .page-banner{background:linear-gradient(120deg,#123747,#082632)}
+html[data-theme="night"] .page-banner h1,html[data-theme="night"] .page-banner h1 span{color:#f0f8f6}
+html[data-theme="night"] .banner-lead,html[data-theme="night"] .page-banner p{color:#bcd2d6}
+html[data-theme="night"] .stage-intro-card h2,html[data-theme="night"] .summary-text h2,html[data-theme="night"] .cv-main h2,html[data-theme="night"] .cv-main h3,html[data-theme="night"] .detail-item h3{color:#dff4f3}
+html[data-theme="night"] .summary-text p,html[data-theme="night"] .detail-item p,html[data-theme="night"] .cv-entry p,html[data-theme="night"] .skill-list p,html[data-theme="night"] .cv-entry ul{color:#b7cfd2}
+html[data-theme="night"] .cv-main{background:#123545}
+html[data-theme="night"] .cv-objective,html[data-theme="night"] .cv-entry{border-color:#345b66}
+html[data-theme="night"] .cv-entry h4,html[data-theme="night"] .skill-list h4,html[data-theme="night"] .cv-objective strong{color:#e8f7f6}
+html[data-theme="night"] .cv-download-strip,html[data-theme="night"] .note-panel,html[data-theme="night"] .gallery-disclaimer{background:#1a3b48;color:#c7dadc;border-color:#ce8a66}
+html[data-theme="night"] .cv-download-strip strong,html[data-theme="night"] .note-panel strong{color:#f3f8f7}
+html[data-theme="night"] .gallery-count{border-color:#446873;color:#bed7da}
+html[data-theme="night"] .gallery-dialog{background:#0e2b3d;color:#eaf7f7}
+html[data-theme="night"] .dialog-bar{background:#123545;border-color:#315464}
+html[data-theme="night"] .dialog-description{color:#adccd1}
+html[data-theme="night"] .dialog-media{background:#061b29}
+html[data-theme="night"] .dialog-close{background:#2c5261;color:#ecf7f5}
+html[data-theme="night"] .button-outline-dark{border-color:#719ca8;color:#e1f3f3}
+html[data-theme="night"] .button-navy{background:#20748b}
+html[data-theme="night"] .comp-state{background:#1a5360;color:#c5e8e7}
+html[data-theme="night"] .state-pending{background:#453923;color:#f2ca84}
+html[data-theme="night"] .footer{background:#041722}
+html[data-theme="night"] .site-header nav.open{background:#092533}
+
+/* Ambient animations — transform-only when possible */
+@keyframes float-sun{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+@keyframes beacon-pulse{0%,100%{opacity:.75}50%{opacity:1}}
+@keyframes beacon-sweep{0%,100%{transform:rotate(-22deg) scaleX(.88)}50%{transform:rotate(19deg) scaleX(1)}}
+@keyframes sea-back{from{transform:translateX(-3%) rotate(-5deg)}to{transform:translateX(4%) rotate(-2deg)}}
+@keyframes sea-mid{from{transform:translateX(4%) rotate(4deg)}to{transform:translateX(-4%) rotate(2deg)}}
+@keyframes sea-front{from{transform:translateX(-2%) rotate(-6deg)}to{transform:translateX(5%) rotate(-1deg)}}
+@keyframes boat-sway{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-8px)}}
+@keyframes gull-fly{0%,100%{translate:0 0;opacity:.65}50%{translate:22px -13px;opacity:.9}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.75)}50%{opacity:1;transform:scale(1.22)}}
+@keyframes radar-turn{to{transform:rotate(360deg)}}
+@keyframes bob-quiet{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+
+@media(max-width:1080px){.ocean-hero .hero-layout{grid-template-columns:1.12fr .88fr;gap:20px}.marine-scene{height:450px;min-height:450px}.scene-beacon{transform:scale(.85);transform-origin:bottom left}.evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:890px){.nav-container{gap:12px}.theme-toggle{margin-left:auto}.ocean-hero .hero-layout{grid-template-columns:1fr;padding-top:60px;padding-bottom:140px}.marine-scene{max-width:660px;height:450px;min-height:450px}.manifesto-grid{grid-template-columns:1fr;gap:24px}}
+@media(max-width:650px){.theme-toggle{min-width:42px;width:42px;padding:0}.theme-toggle-label{display:none}.ocean-hero .hero-layout{padding-top:48px}.ocean-hero .hero-copy h1{font-size:clamp(3.45rem,14vw,5.2rem)}.ocean-hero .hero-intro{line-height:1.76}.ocean-hero .hero-metrics{gap:13px}.marine-scene{min-height:330px;height:330px;border-radius:17px}.scene-sun{width:100px;height:100px}.scene-moon{height:80px;width:80px}.scene-beacon{transform:scale(.75);top:24%;left:17%}.scene-boat{transform:scale(.78);right:10%;bottom:17%}.scene-water-back{bottom:4%}.scene-coordinates{font-size:.53rem}.marine-scene .sea-label{font-size:.53rem}.hero-tide{height:100px}.ocean-hero .scroll-indicator{bottom:24px}.evidence-grid{grid-template-columns:1fr}.gallery-header{align-items:start;gap:10px;flex-direction:column}.evidence-thumb{height:225px}.gallery-count{font-size:.65rem}.dialog-bar{padding:13px 15px}.radar-visual{aspect-ratio:1.15}.manifesto-grid h2{font-size:2.8rem}.ocean-manifesto{padding:74px 0 95px}}
+
+/* Accessibility: animation is opt-out at OS level */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.beacon-beam{transform:rotate(0)!important}.scene-water{transform:none!important}}
+
+/* Avoid wide transformed decorative waves expanding the mobile/desktop viewport. */
+.ocean-manifesto .tide-stripes{left:0;width:100%}
+.ocean-hero,.ocean-manifesto,.marine-scene{overflow:clip}
+.marine-scene .scene-water{left:-14%;width:128%}
